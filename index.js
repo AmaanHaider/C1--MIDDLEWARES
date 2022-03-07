@@ -58,10 +58,10 @@ function logger(req,res,next){
 
 function checkPermission(req,res,next){
     if(req.path=="/libraries"){
-        req.role="libraries"
+        req.role="permission:true"
     }
     else if(req.path=="/authors"){
-        req.role="librauthorsaries"
+        req.role="permission:true"
     }
 }
 
