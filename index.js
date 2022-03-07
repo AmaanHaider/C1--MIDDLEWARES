@@ -47,6 +47,22 @@ function logger(req,res,next){
     console.log("You called me");
     next()
 }
-app.listen(7000,()=>{
-    console.log("working")
-})
+// app.listen(7000,()=>{
+//     console.log("working")
+// })
+
+app.use(checkPermission);
+
+function checkPermission(req,res,next){
+    if(req.path=="/libraries"){
+        req.role="libraries"
+    }
+    else if(req.path=="/authors"){
+        req.role="librauthorsaries"
+    }
+}
+
+// app.listen(4500,()=>{
+//         console.log("checkpermission")
+//     });
+    
