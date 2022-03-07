@@ -1,4 +1,5 @@
 const express = require("express");
+const { route } = require("express/lib/application");
 const app = express();
 
 
@@ -8,9 +9,9 @@ app.get("/books",(req, res)=>{
     return res.send({route:"/books"})
 });
 
-// app.listen(6000,()=>{
-//     console.log("working for books")
-// });
+app.listen(6000,()=>{
+    console.log("working for books")
+});
 
 
 
@@ -22,17 +23,17 @@ app.get("/libraries",(req,res)=>{
     return res.send({route:"/libraries",permission: true})
 });
 
-// app.listen(4000,()=>{
-//     console.log("working for libraries")
-// });
+app.listen(4000,()=>{
+    console.log("working for libraries")
+});
 
 app.get("/authors",(req,res)=>{
     return res.send({route:"/authors",permission:true})
 });
 
-// app.listen(3000,()=>{
-//     console.log("working for authors")
-// });
+app.listen(3000,()=>{
+    console.log("working for authors")
+});
 
 
 
@@ -52,9 +53,21 @@ function logger(req,res,next){
     console.log("You called me");
     next()
 }
-// app.listen(7000,()=>{
-//     console.log("working")
-// })
+app.listen(7000,()=>{
+    console.log("working")
+})
+
+app.get("/libraries",checkPermission,function(req,res){
+    res.send({route :"/libraries",permission:true})
+})
+
+app.get("/authors",checkPermission,function(req,res){
+    res.send({route :"/authors",permission:true})
+})
+app.listen(4800,()=>{
+    console.log("work done")
+})
+
 
 function checkPermission(req,res,next){
     if(req.path=="/libraries"){
@@ -63,9 +76,10 @@ function checkPermission(req,res,next){
     else if(req.path=="/authors"){
         req.role="permission:true"
     }
+    
 }
 
-// app.listen(4500,()=>{
-//         console.log("checkpermission")
-//     });
+app.listen(4500,()=>{
+        console.log("checkpermission")
+    });
 
